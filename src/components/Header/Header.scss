@@ -1,0 +1,42 @@
+$background-section: #e6eff5;
+
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: $background-section;
+    height: 10vh;
+}
+.logo__section {
+    display: flex;
+    justify-content: center;
+    width: 5%;
+}
+.logo__image--width {
+    width: 4vw;
+}
+.navigation__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin:  0 10px;
+    padding: 0; 
+    li {
+        list-style: none;
+        /* font-family: "Ubuntu-MediumItalic"; */
+        font-size: 1.2em;
+        color: #353a3d;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+}
+.button-menu__section--background {
+    background-color: rgb(255, 255, 255);
+    width: 15%;
+    height: 100%;
+    border: 2px solid purple;
+    transform: rotate(-10deg);
+    border-radius: 0 0 0 20px;
+}
+.button-menu__section {
+    display: flex;
+}

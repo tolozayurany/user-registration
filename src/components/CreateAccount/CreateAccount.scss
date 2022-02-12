@@ -1,0 +1,64 @@
+$background-section: #e6eff5;
+
+.create-account {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-color: $background-section;
+    height: 90vh;
+}
+.create-account__section {
+    width: 85%;
+    height: 70%;
+    max-width: 900px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 16px 12px -10px rgba(106, 122, 134, 0.438);
+}
+.create-account__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+}
+.content__header {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    div {
+        display: flex;
+    }
+}
+.content__inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    border: 2px solid blue;
+}
+.information__input--display {
+    display: flex;
+}
+.information__input {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: flex-start;
+    label {
+        font-size: 0.9em;
+        margin-top: 15px;
+    }
+    input {
+        border: none;
+        border-bottom: 1px solid gray;
+        height: 6vh;
+        width: 80%;
+        font-size: 1em;
+    }
+}
+.button-continue__section {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+}
