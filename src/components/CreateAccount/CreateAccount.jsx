@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import InformationForm from '../InformationForm/InformationForm';
 import './CreateAccount.scss';
 
 function CreateAccount() {
@@ -12,38 +14,7 @@ function CreateAccount() {
                         </div>
                         <p>Todos los campos son obligatorios</p>
                     </div>
-                    <div className='content__inputs'>
-                        <div className='information__input--display'>
-                            <div className='information__input'>
-                                <label > Nombre </label>
-                                <input type="text" placeholder='Juan' />
-                            </div>
-                            <div className='information__input'>
-                                <label > Apellido </label>
-                                <input type="text" placeholder='Mantilla' />
-                            </div>
-                        </div>
-                        <div className='information__input--display'>
-                            <div className='information__input'>
-                                <label > Correo </label>
-                                <input type="text" placeholder='Juan' />
-                            </div>
-                            <div className='information__input'>
-                                <label > Celular </label>
-                                <input type="text" placeholder='Mantilla' />
-                            </div>
-                        </div>
-                        <div className='information__input--display'>
-                            <div className='information__input'>
-                                <label > Ciudad </label>
-                                <input type="text" placeholder='Juan' />
-                            </div>
-                            <div className='information__input'>
-                                <label > Dirección de recogida </label>
-                                <input type="text" placeholder='Mantilla' />
-                            </div>
-                        </div>
-                    </div>
+                    <InformationForm />
                     <div className='button-continue__section'>
                         <button className='button'>Cancelar</button>
                         <button className='button'>Continuar</button>
