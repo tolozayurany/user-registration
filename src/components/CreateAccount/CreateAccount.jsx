@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { useForm } from '../../hooks/useForm';
 import InitialForm from '../InitialForm/InitialForm';
 import SecondForm from '../SecondForm/SecondForm';
-import { useForm } from '../../hooks/useForm';
+import PasswordForm from '../PasswordForm/PasswordForm';
 import './CreateAccount.scss';
 
 const defaultForm = {
@@ -17,6 +18,8 @@ const defaultForm = {
     shipments:"",
     commercialName:"",
     businessName:"",
+    password:"",
+    confirmPassword:"",
 };
 const validationsForm = (form) => {
     let errors = {};
@@ -51,7 +54,13 @@ const validationsForm = (form) => {
         errors.shipments = "*Debes elegir uno de los datos de la lista.";
     }
     if (!form.idUser.trim()) {
-        errors.idUser = " *Ingresa tu número de documento para continuar.";
+        errors.idUser = "*Ingresa tu número de documento para continuar.";
+    }
+    if (!form.password.trim()) {
+        errors.password = "*Recuerda que tu contraseña debe contener: Mínimo 8 caracteres que incluyan números y letras.";
+    }
+    if (form.confirmPassword !== form.password) {
+        errors.confirmPassword = "*Las contraseñas deben coincidir.";
     }
    
     return errors;
@@ -66,35 +75,69 @@ function CreateAccount() {
         handleBlur,
     } = useForm(defaultForm, validationsForm);
 
-    const [showComponent, setShowComponent] = useState(false);
+    const components = {
+        form: 'initialForm',
+    };
+
+    const [showComponent, setShowComponent] = useState(components);
+
+    const backComponents = () => {
+        if(showComponent.form === 'passwordForm'){
+            setShowComponent({...showComponent, form:'secondForm'})
+        } else
+        if(showComponent.form === 'secondForm'){
+            setShowComponent({...showComponent, form:'initialForm'})
+        }
+    };
+
     return (
         <section className="create-account">
             <section className='create-account__section'>
                 <div className='content__header'>
                     <div>
-                        <button>back</button>
+                        <button onClick={backComponents}
+                        >back</button>
                         <p>Diligencia tus datos</p>
                     </div>
                     <p>Todos los campos son obligatorios</p>
                 </div>
-                { showComponent===false ?
+                { showComponent.form ==='initialForm' ?
                 <InitialForm
-                validationsForm={validationsForm}
-                defaultForm={defaultForm}
                 setShowComponent={setShowComponent}
-                form={form}
-                errors={errors}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                />:
-                <SecondForm
+                showComponent={showComponent}
                 validationsForm={validationsForm}
                 defaultForm={defaultForm}
                 form={form}
                 errors={errors}
                 handleChange={handleChange}
                 handleBlur={handleBlur}
-                />}
+                />
+                : 
+                showComponent.form ==='secondForm' ?
+                <SecondForm
+                setShowComponent={setShowComponent}
+                showComponent={showComponent}
+                validationsForm={validationsForm}
+                defaultForm={defaultForm}
+                form={form}
+                errors={errors}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                /> 
+                : 
+                showComponent.form ==='passwordForm' ?
+                <PasswordForm
+                setShowComponent={setShowComponent}
+                showComponent={showComponent}
+                validationsForm={validationsForm}
+                defaultForm={defaultForm}
+                form={form}
+                errors={errors}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                /> 
+                : ''
+                }
             </section>
         </section>
     );

@@ -1,10 +1,10 @@
-import './SecondForm.scss';
-
 const SecondForm = ({
     form,
     errors,
     handleChange,
     handleBlur,
+    setShowComponent,
+    showComponent
 }) => {
     return (
         <section className='content__inputs'>
@@ -133,15 +133,12 @@ const SecondForm = ({
                 </div>
             </div>
             <div className='button-continue__section'>
-                <button className='button button--white'>Cancelar</button>
-                <button className='button button--blue' /* onClick={() => {
-                    if (Object.keys(errors).length === 0) {
-                        setShowComponent(true)
-                    } else {
-                        setShowComponent(false)
+                <button className='button button--blue' onClick={() => {
+                    if (Object.keys(errors).length <= 2) {
+                        setShowComponent({...showComponent, form:'passwordForm'})
                     }
                 }
-                } */>
+                }>
                     Continuar
                 </button>
             </div>

@@ -2,6 +2,7 @@ import './InitialForm.scss';
 
 const InitialForm = ({
     setShowComponent,
+    showComponent,
     form,
     errors,
     handleChange,
@@ -99,10 +100,10 @@ const InitialForm = ({
             <div className='button-continue__section'>
                 <button className='button button--white'>Cancelar</button>
                 <button className='button button--blue' onClick={() => {
-                    if (Object.keys(errors).length === 3) {
-                        setShowComponent(true)
+                    if (Object.keys(errors).length <= 5) {
+                        setShowComponent({...showComponent, form:'secondForm'})
                     } else {
-                        setShowComponent(false)
+                        setShowComponent({...showComponent, form:'initialForm'})
                     }
                 }
                 }>
