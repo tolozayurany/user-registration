@@ -1,132 +1,116 @@
-import { useForm } from '../../hooks/useForm';
-import './InformationForm.scss';
+import './InitialForm.scss';
 
-const initialForm = {
-    name: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    city: "",
-    address: "",
-};
-const validationsForm = (form) => {
-    let errors = {};
-    let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
-
-    if (!form.name.trim()) {
-        errors.name = "*Ingresa tu nombre para continuar.";
-    }
-    if (!form.lastName.trim()) {
-        errors.lastName = "*Ingresa tu apellido para continuar.";
-    }
-    if (!form.email.trim()) {
-        errors.email = "*Ingresa tu correo para continuar.";
-    } else if (!regexEmail.test(form.email.trim())){
-        errors.email= "*Ingresa un correo válido."
-    }
-    if (!form.phone.trim()) {
-        errors.phone = "*El número de celular debe ser colombiano y de 10 dígitos.";
-    } else if (form.phone.length != 10 ){
-        errors.phone = "*El número de celular debe ser de 10 dígitos.";
-    }
-    if (!form.city.trim()) {
-        errors.city = "*Por favor ingresa una ciudad valida.";
-    }
-    if (!form.address.trim()) {
-        errors.address = "*Ingresa una dirección de recogida.";
-    }
-    
-    return errors;
-};
-
-function InformationForm() {
-    const {
-        form,
-        errors,
-        loading,
-        response,
-        handleChange,
-        handleClick,
-        handleSubmit,
-    } = useForm(initialForm, validationsForm);
+const InitialForm = ({
+    setShowComponent,
+    form,
+    errors,
+    handleChange,
+    handleBlur,
+}) => {
     return (
         <section className='content__inputs'>
             <div className='information__input--display'>
                 <div className='information__input'>
                     <label > Nombre </label>
                     <input
+                        className={errors.name ? 'error-input' : null}
                         type="text"
                         name='name'
                         placeholder='Juan'
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={form.name}
                         required
                     />
-                    {errors.name&&<p>{errors.name}</p>}
+                    {errors.name && <p>{errors.name}</p>}
                 </div>
                 <div className='information__input'>
                     <label > Apellido </label>
-                    <input type="text"
+                    <input
+                        className={errors.lastName ? 'error-input' : null}
+                        type="text"
                         name='lastName'
                         placeholder='Mantilla'
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={form.lastName}
                         required
                     />
-                    {errors.lastName&&<p>{errors.lastName}</p>}
+                    {errors.lastName && <p>{errors.lastName}</p>}
                 </div>
             </div>
             <div className='information__input--display'>
                 <div className='information__input'>
                     <label > Correo </label>
-                    <input type="email"
+                    <input
+                        className={errors.email ? 'error-input' : null}
+                        type="email"
                         name='email'
                         placeholder='juanm@mipaquete.com'
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={form.email}
                         required
                     />
-                    {errors.email&&<p>{errors.email}</p>}
+                    {errors.email && <p>{errors.email}</p>}
                 </div>
                 <div className='information__input'>
                     <label > Celular </label>
                     <input
+                        className={errors.phone ? 'error-input' : null}
                         type="number"
                         placeholder='3150128510'
                         name='phone'
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={form.phone}
                     />
-                    {errors.phone&&<p>{errors.phone}</p>}
+                    {errors.phone && <p>{errors.phone}</p>}
                 </div>
             </div>
             <div className='information__input--display'>
                 <div className='information__input'>
                     <label > Ciudad </label>
-                    <input type="text"
+                    <input
+                        className={errors.city ? 'error-input' : null}
+                        type="text"
                         placeholder='MEDELLÍN'
                         name='city'
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={form.city}
                     />
-                    {errors.city&&<p>{errors.city}</p>}
+                    {errors.city && <p>{errors.city}</p>}
                 </div>
                 <div className='information__input'>
                     <label > Dirección de recogida </label>
-                    <input type="text"
+                    <input
+                        className={errors.address ? 'error-input' : null}
+                        type="text"
                         placeholder='Carrera 3 # 5 - 40'
                         name='address'
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={form.address}
                     />
-                    {errors.address&&<p>{errors.address}</p>}
+                    {errors.address && <p>{errors.address}</p>}
                 </div>
             </div>
-            <button onClick={handleClick}>
-                    holakease
-            </button>
+            <div className='button-continue__section'>
+                <button className='button button--white'>Cancelar</button>
+                <button className='button button--blue' onClick={() => {
+                    if (Object.keys(errors).length === 3) {
+                        setShowComponent(true)
+                    } else {
+                        setShowComponent(false)
+                    }
+                }
+                }>
+                    Continuar
+                </button>
+            </div>
         </section>
     );
 }
 
-export default InformationForm;
+export default InitialForm;

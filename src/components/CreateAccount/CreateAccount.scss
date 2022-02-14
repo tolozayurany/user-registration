@@ -8,20 +8,18 @@ $background-section: #e6eff5;
     height: 90vh;
 }
 .create-account__section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
     width: 85%;
-    height: 70%;
+    height: 65vh;
     max-width: 900px;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 16px 12px -10px rgba(106, 122, 134, 0.438);
 }
-.create-account__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 100%;
-}
+
 .content__header {
     display: flex;
     justify-content: space-between;
@@ -29,10 +27,4 @@ $background-section: #e6eff5;
     div {
         display: flex;
     }
-}
-
-.button-continue__section {
-    display: flex;
-    justify-content: space-evenly;
-    width: 80%;
 }
